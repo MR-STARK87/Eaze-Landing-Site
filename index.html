@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eaze | Minimal Programming Language</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">EAZE</a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#philosophy">Philosophy</a>
+                <a href="behind.html">Behind Eaze</a>
+                <a href="download.html">Download</a>
+                <a href="../eaze-docs/index.html">Docs</a>
+                <a href="download.html" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <h1>
+                <span>Think in code.</span><br>
+                <span>Not in syntax.</span>
+            </h1>
+            <p class="hero-description">
+                Eaze is a beginner-friendly programming language and learning environment designed to reduce cognitive barriers. Focus on logic, creativity, and problem-solving while Eaze handles the complexity.
+            </p>
+            <div class="hero-actions">
+                <a href="download.html" class="btn-primary">Download Installer</a>
+                <a href="../eaze-docs/index.html" style="text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.9rem; padding: 0.7rem 0; border-bottom: 2px solid var(--text-main);">View Documentation</a>
+            </div>
+        </section>
+
+        <!-- Use Cases / Narrative -->
+        <section class="features-section" style="background: var(--bg-secondary); border-radius: 40px; margin: 0 2rem;">
+            <div style="padding: 6rem 4rem;">
+                <div style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 2rem;">Built for what matters</div>
+                <h2 style="font-size: 3.5rem; font-weight: 800; letter-spacing: -0.05em; margin-bottom: 4rem; max-width: 800px;">Where thought meets implementation.</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 1.5rem;">CASE_01</div>
+                        <h3>First-Time Programming</h3>
+                        <p>Start coding without feeling overwhelmed. Eaze replaces intimidating syntax with clear, readable statements that help beginners focus on understanding concepts.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 1.5rem;">CASE_02</div>
+                        <h3>Interactive Learning</h3>
+                        <p>Learn by doing. Write programs, visualize execution step-by-step, inspect variables, and understand how code behaves in real time.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 1.5rem;">CASE_03</div>
+                        <h3>Classroom Education</h3>
+                        <p>Designed for students, educators, and coding bootcamps. Eaze acts as a bridge between visual programming tools and professional languages.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 1.5rem;">CASE_04</div>
+                        <h3>Rapid Experimentation</h3>
+                        <p>Turn ideas into working programs in minutes. Eaze's interpreter provides immediate feedback, making exploration and learning feel natural.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="features-section" id="philosophy">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2 style="font-size: 4rem; font-weight: 800; letter-spacing: -0.05em; margin-bottom: 3rem;">Less friction. <br>More understanding.</h2>
+                <p style="font-size: 1.4rem; color: var(--text-muted); line-height: 1.6;">
+                    Most programming languages are designed for software development. Eaze is designed for learning. By reducing unnecessary syntactic complexity, learners can focus on computational thinking and problem-solving first.
+                </p>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features-section" id="features">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>Natural Language Syntax</h3>
+                    <p>Write code that reads like structured English while preserving real programming concepts and logic.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Guided Learning Experience</h3>
+                    <p>Friendly errors, execution visualization, and interactive explanations help learners understand not just what happened, but why.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Instant Feedback</h3>
+                    <p>Execute code immediately, experiment freely, and learn through continuous iteration and exploration.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Built for Understanding</h3>
+                    <p>A complete interpreter, visualizer, and learning ecosystem designed to make programming approachable and intuitive.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Preview -->
+        <section class="code-section">
+            <div style="margin-bottom: 3rem; text-align: center;">
+                <h3 style="font-size: 2rem; font-weight: 800; letter-spacing: -0.04em;">A snippet of flow</h3>
+            </div>
+            <div class="code-window">
+                <div><span class="code-keyword">set</span> name <span class="code-keyword">to</span> <span class="code-string">"Explorer"</span></div>
+                <div><span class="code-keyword">ask</span> <span class="code-string">"What is your quest?"</span> <span class="code-keyword">into</span> quest</div>
+                <br>
+                <div><span class="code-keyword">if</span> quest <span class="code-keyword">is</span> <span class="code-string">"code"</span> <span class="code-keyword">then</span></div>
+                <div style="padding-left: 2rem;"><span class="code-keyword">show</span> <span class="code-string">"Welcome to Eaze, "</span> + name</div>
+                <div><span class="code-keyword">end</span></div>
+            </div>
+        </section>
+
+        <!-- Roadmap -->
+        <section class="features-section">
+            <div style="border: 1px solid var(--border); padding: 5rem; border-radius: 30px;">
+                <h3 style="font-size: 2.5rem; font-weight: 800; letter-spacing: -0.05em; margin-bottom: 3rem;">The Road Ahead</h3>
+                <div style="display: flex; gap: 4rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h4 style="margin-bottom: 1rem; color: var(--text-muted);">v1.2: Ecosystem</h4>
+                        <p>Introducing a centralized package manager and a rich standard library for web and graphics.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <h4 style="margin-bottom: 1rem; color: var(--text-muted);">v1.5: Native Apps</h4>
+                        <p>Compiler support for generating native binaries on Windows, macOS, and Linux.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <h4 style="margin-bottom: 1rem; color: var(--text-muted);">v2.0: Flow AI</h4>
+                        <p>Deep integration with LLMs to assist in writing natural, safe, and efficient Eaze code.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Call -->
+        <section class="hero" style="text-align: center; padding: 10rem 2rem;">
+            <h2 style="font-size: 3.5rem; font-weight: 800; letter-spacing: -0.05em; margin-bottom: 2rem;">Ready to start your programming journey?</h2>
+            <div class="hero-actions" style="justify-content: center;">
+                <a href="download.html" class="btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem;">Download Eaze</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <a href="#" class="footer-logo">EAZE</a>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Resources</h4>
+                    <a href="../eaze-docs/index.html" class="transition-link">Manuscript</a>
+                    <a href="#">Playground</a>
+                    <a href="#">GitHub</a>
+                </div>
+                <div class="link-group">
+                    <h4>Connect</h4>
+                    <a href="#">Discord</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 4rem; font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: space-between;">
+            <span>&copy; 2026 Eaze Language Foundation.</span>
+            <span style="opacity: 0.5;">Designed for Humans.</span>
+        </div>
+    </footer>
+
+    <div class="transition-overlay"></div>
+
+    <script>
+        // Custom Cursor
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            document.body.classList.add('cursor-active');
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            dot.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
+            outline.style.transform = `translate3d(${posX - 16}px, ${posY - 16}px, 0)`;
+        });
+
+        // Hover effects for cursor
+        document.querySelectorAll('a, button, .feature-item').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                outline.style.transform += ' scale(1.5)';
+                outline.style.background = 'rgba(0,0,0,0.05)';
+            });
+            el.addEventListener('mouseleave', () => {
+                outline.style.background = 'transparent';
+            });
+        });
+
+        // Parallax Effect for Code Window
+        const codeWindow = document.querySelector('.code-window');
+        if (codeWindow) {
+            window.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                codeWindow.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+        }
+
+        // Transition logic
+        const overlay = document.querySelector('.transition-overlay');
+        
+        window.addEventListener('load', () => {
+            overlay.classList.add('exit');
+        });
+
+        document.querySelectorAll('a').forEach(link => {
+            if (link.href.includes('eaze-docs') || link.classList.contains('transition-link')) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const href = link.href;
+                    overlay.classList.remove('exit');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 600);
+                });
+            }
+        });
+
+        // Simple reveal animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section, h1, .hero-description, .hero-actions').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Eaze | The Engine of Flow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="minimal-page">
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">EAZE</a>
+            <div class="nav-links">
+                <a href="index.html#features">Features</a>
+                <a href="index.html#philosophy">Philosophy</a>
+                <a href="../eaze-docs/index.html">Docs</a>
+                <a href="index.html" class="btn-primary">Back Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" style="text-align: center; padding-top: 12rem;">
+            <h1 style="font-size: 5rem; margin-bottom: 1.5rem;">Download Eaze</h1>
+            <p class="hero-description" style="margin: 0 auto 4rem;">Install Eaze and begin learning programming through clarity, exploration, and understanding.</p>
+            
+            <div class="download-container" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <div class="download-card" style="max-width: 400px; padding: 4rem;">
+                    <div style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 2rem;">Recommended</div>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Windows</h2>
+                    <p style="font-size: 1rem; margin-bottom: 3rem;">Includes the Eaze Interpreter, CLI environment, execution visualizer, and learning-focused development tools.</p>
+                    <a href="EazeSetup.exe" class="download-btn" download style="width: 100%; justify-content: center;">
+                        Download .exe
+                    </a>
+                    <div class="download-info" style="margin-top: 2rem;">v1.0.0 • x64 • 95.9 MB</div>
+                </div>
+
+                <div class="download-card" style="max-width: 400px; padding: 4rem; opacity: 0.6; cursor: not-allowed;">
+                    <div style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 2rem;">Coming Soon</div>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">macOS</h2>
+                    <p style="font-size: 1rem; margin-bottom: 3rem;">Native macOS support is currently under active development and will be available in a future release.</p>
+                    <span class="download-btn" style="background: var(--border); color: var(--text-muted); pointer-events: none; width: 100%; justify-content: center;">
+                        Notify Me
+                    </span>
+                    <div class="download-info" style="margin-top: 2rem;">v1.1.0 • Universal • TBD</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section" style="border-top: 1px solid var(--border); margin-top: 8rem;">
+            <div class="features-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="feature-item">
+                    <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">System Requirements</h4>
+                    <p style="font-size: 0.9rem;">Modern operating system, Node.js environment, and minimal system resources required to run the Eaze ecosystem.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Checksums</h4>
+                    <p style="font-size: 0.9rem;">SHA-256: <code>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code></p>
+                </div>
+                <div class="feature-item">
+                    <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Package Manager</h4>
+                    <p style="font-size: 0.9rem;">Install via terminal: <code>npm install -g eaze-lang</code> (Requires Node.js)</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="margin-top: 4rem;">
+        <div class="footer-grid">
+            <a href="index.html" class="footer-logo">EAZE</a>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Eaze Language Foundation.</p>
+        </div>
+    </footer>
+
+    <div class="transition-overlay"></div>
+
+    <script>
+        // Custom Cursor
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            document.body.classList.add('cursor-active');
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            dot.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
+            outline.style.transform = `translate3d(${posX - 16}px, ${posY - 16}px, 0)`;
+        });
+
+        // Hover effects for cursor
+        document.querySelectorAll('a, button, .download-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                outline.style.transform += ' scale(1.5)';
+                outline.style.background = 'rgba(0,0,0,0.05)';
+            });
+            el.addEventListener('mouseleave', () => {
+                outline.style.background = 'transparent';
+            });
+        });
+
+        // Transition logic
+        const overlay = document.querySelector('.transition-overlay');
+        
+        window.addEventListener('load', () => {
+            overlay.classList.add('exit');
+        });
+
+        document.querySelectorAll('a').forEach(link => {
+            if (!link.hasAttribute('download') && (link.href.includes('index.html') || link.href.includes('eaze-docs') || link.classList.contains('transition-link'))) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const href = link.href;
+                    overlay.classList.remove('exit');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 600);
+                });
+            }
+        });
+
+        // Simple reveal animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section, h1, .hero-description, .download-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

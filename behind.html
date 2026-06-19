@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behind Eaze | Editorial Narrative</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Behind Eaze: Editorial Masterclass Styles */
+        :root {
+            --flow-line: rgba(0, 0, 0, 0.08);
+            --accent-soft: rgba(0, 0, 0, 0.02);
+            --depth-shadow: 0 40px 100px rgba(0,0,0,0.08);
+            --transition-ultra: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .dark-theme {
+            --flow-line: rgba(255, 255, 255, 0.08);
+            --accent-soft: rgba(255, 255, 255, 0.02);
+            --depth-shadow: 0 40px 100px rgba(0,0,0,0.4);
+        }
+
+        /* Smooth Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: var(--text-main); border-radius: 0; }
+
+        .bg-text {
+            position: fixed;
+            font-size: 40vw;
+            font-weight: 900;
+            color: var(--accent-soft);
+            z-index: -2;
+            white-space: nowrap;
+            letter-spacing: -0.08em;
+            pointer-events: none;
+            user-select: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .vertical-axis {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            width: 1px;
+            height: 100vh;
+            background: var(--flow-line);
+            z-index: -1;
+            transform: translateX(-50%);
+        }
+
+        .axis-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: var(--text-main);
+            transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .flow-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20rem 2rem 20rem;
+            position: relative;
+        }
+
+        .flow-section {
+            margin-bottom: 40rem;
+            display: flex;
+            width: 100%;
+            position: relative;
+            opacity: 0;
+            transform: translateY(120px) scale(0.98);
+            transition: var(--transition-ultra);
+        }
+
+        .flow-section.reveal-active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .flow-content {
+            width: 45%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .flow-section:nth-child(even) { justify-content: flex-end; }
+        .flow-section:nth-child(even) .flow-content { text-align: right; }
+        .flow-section:nth-child(even) .milestone-num { left: auto; right: -20%; }
+
+        .hero-meta {
+            font-size: 0.9rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.8em;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-meta span {
+            display: inline-block;
+            transform: translateY(100%);
+            animation: slideUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .name-hero {
+            font-size: clamp(6rem, 20vw, 18rem);
+            font-weight: 900;
+            line-height: 0.7;
+            letter-spacing: -0.08em;
+            margin-bottom: 8rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .name-hero span {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+            animation: slideUp 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .name-hero span:nth-child(2) { animation-delay: 0.2s; }
+        .name-hero span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .narrative-title {
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.6em;
+            color: var(--text-muted);
+            margin-bottom: 5rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .flow-section:nth-child(even) .narrative-title { flex-direction: row-reverse; }
+
+        .narrative-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--flow-line);
+        }
+
+        .narrative-text {
+            font-size: clamp(4rem, 10vw, 8rem);
+            line-height: 0.85;
+            font-weight: 900;
+            letter-spacing: -0.07em;
+            margin-bottom: 4rem;
+        }
+
+        .narrative-detail {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+            max-width: 40ch;
+            position: relative;
+            transition: color 0.4s ease;
+        }
+
+        .flow-section:nth-child(even) .narrative-detail { margin-left: auto; }
+
+        .narrative-detail:hover { color: var(--text-main); }
+
+        .milestone-num {
+            position: absolute;
+            left: -20%;
+            top: -4rem;
+            font-size: 15rem;
+            font-weight: 950;
+            color: var(--accent-soft);
+            line-height: 0.6;
+            letter-spacing: -0.05em;
+            z-index: -1;
+            font-style: italic;
+        }
+
+        .social-section {
+            margin-top: 20rem;
+            border-top: 1px solid var(--border);
+            padding-top: 15rem;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 10rem;
+        }
+
+        .social-item {
+            background: var(--bg-secondary);
+            padding: 8rem 5rem;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            border-radius: 40px;
+            transition: var(--transition-ultra);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .social-item:hover {
+            transform: translateY(-20px) scale(1.02);
+            background: var(--bg-main);
+            box-shadow: var(--depth-shadow);
+        }
+
+        .social-item h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            margin-bottom: 2rem;
+            opacity: 0.4;
+        }
+
+        .social-item span {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -0.06em;
+        }
+
+        .parallax-img-wrap {
+            width: 100%;
+            height: 80vh;
+            margin: 15rem 0;
+            overflow: hidden;
+            border-radius: 60px;
+            position: relative;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-card {
+            background: var(--glass);
+            backdrop-filter: blur(40px);
+            padding: 6rem;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+            text-align: center;
+            z-index: 2;
+            transform: translateY(0);
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            max-width: 800px;
+        }
+
+        .parallax-img-wrap:hover .floating-card {
+            transform: translateY(-20px);
+        }
+
+        @media (max-width: 1100px) {
+            .flow-content { width: 70%; }
+            .milestone-num { font-size: 10rem; }
+        }
+
+        @media (max-width: 768px) {
+            .vertical-axis { display: none; }
+            .flow-content { width: 100% !important; text-align: left !important; }
+            .flow-section:nth-child(even) .milestone-num { left: -5%; right: auto; }
+            .milestone-num { font-size: 6rem; top: -2rem; }
+            .social-grid { grid-template-columns: 1fr; }
+            .flow-section { margin-bottom: 25rem; }
+            .narrative-detail { font-size: 1.4rem; }
+            .flow-container { padding-top: 15rem; }
+            .floating-card { padding: 3rem; margin: 0 2rem; }
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="vertical-axis">
+        <div class="axis-progress"></div>
+    </div>
+    <div class="bg-text">FLOW</div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo transition-link">EAZE</a>
+            <div class="nav-links">
+                <a href="index.html" class="transition-link">Frontispiece</a>
+                <a href="../eaze-docs/index.html" class="transition-link">Manuscript</a>
+                <a href="download.html" class="btn-primary transition-link">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flow-container">
+        <!-- Hero Section -->
+        <section class="flow-section" style="margin-bottom: 45rem; opacity: 1; transform: none;">
+            <div class="flow-content" style="width: 100%;">
+                <span class="hero-meta"><span>Creator of Eaze</span></span>
+                <h1 class="name-hero">
+                    <span>Syed</span>
+                    <span>Zaid</span>
+                    <span>Ali</span>
+                </h1>
+                <p style="font-size: clamp(2rem, 5vw, 3.5rem); color: var(--text-muted); max-width: 1000px; line-height: 1.1; font-style: italic; margin-top: 4rem; letter-spacing: -0.03em; font-weight: 500;">
+                    Exploring a simple idea: What if programming was taught in the language people already think in?
+                </p>
+            </div>
+        </section>
+
+        <!-- Milestone 01 -->
+        <section class="flow-section">
+            <div class="flow-content">
+                <span class="milestone-num">01</span>
+                <span class="narrative-title">The Question</span>
+                <p class="narrative-text">Why is learning to code so difficult?</p>
+                <div class="narrative-detail">
+                    Eaze started with a simple observation: many beginners struggle with syntax before they ever struggle with logic. The goal was never to create another production language, but to create a better first step into programming.
+                </div>
+            </div>
+        </section>
+
+        <!-- Immersive Break -->
+        <div class="parallax-img-wrap">
+            <div class="floating-card">
+                <span style="font-size: 0.9rem; font-weight: 900; letter-spacing: 0.8em; text-transform: uppercase; opacity: 0.4;">The Vision</span>
+                <h3 style="font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; margin-top: 2rem; letter-spacing: -0.06em; line-height: 0.9;">Programming for humans first.</h3>
+                <p style="margin-top: 3rem; font-size: 1.2rem; opacity: 0.6; max-width: 50ch; margin-inline: auto;">Eaze reduces cognitive barriers by aligning code more closely with natural thought while preserving the structure and discipline of real programming.</p>
+            </div>
+            <!-- Dynamic geometric pattern -->
+            <svg class="parallax" viewBox="0 0 100 100" preserveAspectRatio="none" style="opacity: 0.1;">
+                <defs>
+                    <pattern id="grid-large" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-width="0.05"/>
+                    </pattern>
+                </defs>
+                <rect width="100" height="100" fill="url(#grid-large)" />
+            </svg>
+        </div>
+
+        <!-- Milestone 02 -->
+        <section class="flow-section">
+            <div class="flow-content">
+                <span class="milestone-num">02</span>
+                <span class="narrative-title">The Philosophy</span>
+                <p class="narrative-text">Learning before complexity.</p>
+                <div class="narrative-detail">
+                    Programming is ultimately about problem-solving. Eaze removes unnecessary friction, provides meaningful feedback, and helps learners understand how programs execute rather than simply memorizing syntax rules.
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Call -->
+        <section class="flow-section social-section">
+            <div class="flow-content" style="width: 100%;">
+                <span class="narrative-title">The Collective</span>
+                <h2 style="font-size: clamp(5rem, 15vw, 12rem); font-weight: 900; letter-spacing: -0.08em; line-height: 0.75; margin-bottom: 5rem;">Join the <br>journey.</h2>
+                
+                <div class="social-grid">
+                    <a href="https://github.com/MR-STARK87" target="_blank" class="social-item">
+                        <h4>Repository</h4>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/syed-zaid-ali-5a5803330/" target="_blank" class="social-item">
+                        <h4>Connection</h4>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: var(--bg-secondary); border-top: 1px solid var(--border);">
+        <div class="nav-container" style="display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 4rem; padding: 15rem 0;">
+            <a href="index.html" class="logo transition-link" style="font-size: 2rem;">EAZE</a>
+            <div style="display: flex; gap: 6rem;">
+                <a href="index.html" class="nav-item transition-link">Home</a>
+                <a href="../eaze-docs/index.html" class="nav-item transition-link">Docs</a>
+                <a href="download.html" class="nav-item transition-link">Get Eaze</a>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); font-weight: 900; letter-spacing: 0.6em; text-transform: uppercase; margin-top: 4rem; opacity: 0.4;">&copy; 2026 Eaze Language Foundation</p>
+        </div>
+    </footer>
+
+    <div class="transition-overlay"></div>
+
+    <script>
+        // Custom Cursor
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            document.body.classList.add('cursor-active');
+            const posX = e.clientX;
+            const posY = e.clientY;
+            dot.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
+            outline.style.transform = `translate3d(${posX - 16}px, ${posY - 16}px, 0)`;
+        });
+
+        document.addEventListener('mouseover', (e) => {
+            const el = e.target.closest('a, button, .social-item');
+            if (el) {
+                outline.style.transform += ' scale(2)';
+                outline.style.background = 'rgba(0,0,0,0.05)';
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            const el = e.target.closest('a, button, .social-item');
+            if (el) {
+                outline.style.background = 'transparent';
+            }
+        });
+
+        // Scroll Logic
+        window.addEventListener('scroll', () => {
+            const axisProgress = document.querySelector('.axis-progress');
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            axisProgress.style.height = `${scrollPercent}%`;
+            
+            // Background text parallax
+            const bgText = document.querySelector('.bg-text');
+            bgText.style.transform = `translate(-50%, calc(-50% + ${window.scrollY * 0.2}px))`;
+
+            // Parallax SVG
+            const pImg = document.querySelector('.parallax-img');
+            if (pImg) {
+                const rect = pImg.parentElement.getBoundingClientRect();
+                const offset = (window.innerHeight - rect.top) * 0.15;
+                pImg.style.transform = `translateY(${offset}px)`;
+            }
+        });
+
+        // Transition logic
+        const overlay = document.querySelector('.transition-overlay');
+        
+        window.addEventListener('load', () => {
+            overlay.classList.add('exit');
+        });
+
+        document.querySelectorAll('a').forEach(link => {
+            if (link.target === '_blank') return;
+            link.addEventListener('click', (e) => {
+                const href = link.href;
+                if (href.includes('#')) return;
+                
+                e.preventDefault();
+                overlay.classList.remove('exit');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 600);
+            });
+        });
+
+        // Intersection Observer for Reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -10% 0px'
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.flow-section').forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
