@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | Eaze Language Manual</title>
+    <meta name="description" content="The complete Eaze manual: language tour with examples, CLI and Playground guides, AI assistant, troubleshooting, and roadmap.">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Eaze Documentation | The Language Manual">
+    <meta property="og:description" content="Every Eaze feature, explained with runnable examples. Variables, loops, functions, lists, CLI, Playground, and AI help.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-outline" aria-hidden="true"></div>
+
+    <nav aria-label="Primary">
+        <div class="nav-container">
+            <a href="index.html" class="logo">EAZE</a>
+            <div class="nav-links" id="primary-nav">
+                <a href="docs.html" aria-current="page">Docs</a>
+                <a href="behind.html">Behind Eaze</a>
+                <a href="download.html">Download</a>
+                <a href="download.html" class="btn-primary">Get Started</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9673;</button>
+                <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+        <header class="docs-hero">
+            <div class="eyebrow" style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 1.5rem;">Documentation &middot; v1.0.0</div>
+            <h1>The Eaze<br>manual.</h1>
+            <p class="hero-description">Every feature of the language, the command line, the Playground, and the AI assistant — each one paired with an example you can run.</p>
+        </header>
+
+        <div class="docs-layout">
+            <aside class="docs-toc" aria-label="On this page">
+                <h2>On this page</h2>
+                <ul>
+                    <li><a href="#getting-started">Getting started</a></li>
+                    <li><a href="#tour">Language tour</a></li>
+                    <li class="toc-sub"><a href="#variables">Variables</a></li>
+                    <li class="toc-sub"><a href="#data-types">Data types</a></li>
+                    <li class="toc-sub"><a href="#output">Output</a></li>
+                    <li class="toc-sub"><a href="#input">Input</a></li>
+                    <li class="toc-sub"><a href="#operators">Operators</a></li>
+                    <li class="toc-sub"><a href="#conditionals">Conditionals</a></li>
+                    <li class="toc-sub"><a href="#loops">Loops</a></li>
+                    <li class="toc-sub"><a href="#lists">Lists</a></li>
+                    <li class="toc-sub"><a href="#functions">Functions</a></li>
+                    <li><a href="#cli">CLI &amp; REPL</a></li>
+                    <li><a href="#playground">Playground</a></li>
+                    <li><a href="#ai-assistant">AI assistant</a></li>
+                    <li><a href="#examples">Example programs</a></li>
+                    <li><a href="#errors">Troubleshooting</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                </ul>
+            </aside>
+
+            <div class="docs-content">
+                <section id="getting-started">
+                    <h2>Getting started</h2>
+                    <p>There are three ways to write Eaze. Pick whichever fits your machine — the language is identical everywhere.</p>
+                    <h3>1. The Playground (easiest)</h3>
+                    <p><a href="download.html">Download Eaze Playground v1.0.0 for Windows</a>, either the guided installer or the portable build that runs from anywhere. Open it, type a program, press <strong>Run</strong> (or <code>F5</code>).</p>
+                    <h3>2. From source</h3>
+                    <p>Requires <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js 18+</a>:</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-comment"># Clone the engine, install, open the REPL</span>
+git clone https://github.com/MR-STARK87/Eaze.git
+npm install
+npm start</code></pre></div>
+                    <h3>3. Your first program</h3>
+                    <p>One statement per line. Store values with <code>set … to</code>, print them with <code>show</code>:</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-keyword">set</span> name <span class="code-keyword">to</span> <span class="code-string">"Ada"</span>
+<span class="code-keyword">show</span> <span class="code-string">"Hello, "</span> + name
+<span class="code-keyword">show</span> <span class="code-string">"Welcome to Eaze."</span></code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output</span>→ Hello, Ada
+→ Welcome to Eaze.</pre>
+                </section>
+
+                <section id="tour">
+                    <h2>Language tour</h2>
+                    <p>Eaze reads like structured English. There are no semicolons, no braces, and no cryptic symbols: blocks open with a plain word (<code>if</code>, <code>repeat</code>, <code>while</code>, <code>define</code>) and always close with <code>end</code>.</p>
+                    <div class="doc-table" role="region" aria-label="Eaze keywords" tabindex="0"><table>
+                        <tr><th>Word</th><th>Does</th><th>Example</th></tr>
+                        <tr><td><code>set … to</code></td><td>Creates or updates a variable</td><td><code>set score to 10</code></td></tr>
+                        <tr><td><code>show</code> / <code>say</code></td><td>Prints a value (aliases)</td><td><code>show score</code></td></tr>
+                        <tr><td><code>ask … into</code></td><td>Asks the user, stores the answer</td><td><code>ask "Age?" into age</code></td></tr>
+                        <tr><td><code>if</code> / <code>else</code> / <code>end</code></td><td>Runs code only when true</td><td><code>if score &gt; 5</code></td></tr>
+                        <tr><td><code>repeat … times</code></td><td>Loops a fixed number of times</td><td><code>repeat 3 times</code></td></tr>
+                        <tr><td><code>while</code></td><td>Loops while a condition holds</td><td><code>while score &lt; 100</code></td></tr>
+                        <tr><td><code>define</code> / <code>call</code> / <code>return</code></td><td>Reusable functions</td><td><code>set x to call add(2, 3)</code></td></tr>
+                        <tr><td><code>and</code> / <code>or</code> / <code>not</code></td><td>Plain-word logic</td><td><code>if a and not b</code></td></tr>
+                    </table></div>
+                    <div class="doc-note"><strong>One rule to remember:</strong> every block opener needs its <code>end</code>. Indentation is for humans — Eaze follows the <code>end</code>s.</div>
+                </section>
+
+                <section id="variables">
+                    <h2>Variables</h2>
+                    <p>Variables are created the moment you assign them. Names use letters, numbers, and underscores, and must start with a letter or underscore.</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-keyword">set</span> age <span class="code-keyword">to</span> 25
+<span class="code-keyword">set</span> price <span class="code-keyword">to</span> 99.99
+<span class="code-keyword">set</span> name <span class="code-keyword">to</span> <span class="code-string">"Ada"</span>
+<span class="code-keyword">set</span> total <span class="code-keyword">to</span> price + age
+
+<span class="code-comment"># Reassign freely — variables are mutable</span>
+<span class="code-keyword">set</span> age <span class="code-keyword">to</span> 26
+<span class="code-keyword">show</span> age</code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output</span>→ 26</pre>
+                </section>
+
+                <section id="data-types">
+                    <h2>Data types</h2>
+                    <p>Three kinds of values cover nearly every beginner program: numbers, strings, and lists.</p>
+                    <h3>Numbers</h3>
+                    <p>Integers and decimals, including negatives. Arithmetic is <code>+</code> <code>-</code> <code>*</code> <code>/</code>; dividing by zero is an error.</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-keyword">set</span> whole <span class="code-keyword">to</span> 42
+<span class="code-keyword">set</span> pi <span class="code-keyword">to</span> 3.14
+<span class="code-keyword">set</span> debt <span class="code-keyword">to</span> -100
+<span class="code-keyword">show</span> 2 + 3 * 4   <span class="code-comment"># 14 — × before +</span></code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output</span>→ 14</pre>
+                    <h3>Strings</h3>
+                    <p>Single or double quotes both work. Join strings with <code>+</code>.</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-keyword">set</span> first <span class="code-keyword">to</span> <span class="code-string">"Ada"</span>
+<span class="code-keyword">set</span> last <span class="code-keyword">to</span> <span class="code-string">'Lovelace'</span>
+<span class="code-keyword">show</span> first + <span class="code-string">" "</span> + last</code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output</span>→ Ada Lovelace</pre>
+                    <h3>Truthiness</h3>
+                    <p>Conditions treat <code>0</code> and <code>""</code> as false; everything else counts as true — the same intuition as everyday language.</p>
+                </section>
+
+                <section id="output">
+                    <h2>Output</h2>
+                    <p><code>show</code> prints any value; <code>say</code> is a friendly alias that does exactly the same thing. Each statement prints one line.</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-keyword">say</span> <span class="code-string">"Counting down:"</span>
+<span class="code-keyword">show</span> 3
+<span class="code-keyword">show</span> 2 + 1
+<span class="code-keyword">show</span> [1, 2, 3]</code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output</span>→ Counting down:
+→ 3
+→ 3
+→ [1, 2, 3]</pre>
+                </section>
+
+                <section id="input">
+                    <h2>Input</h2>
+                    <p><code>ask</code> shows a prompt and stores the answer with <code>into</code>. If the answer looks like a number, Eaze converts it automatically — so <code>age + 1</code> just works.</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-keyword">ask</span> <span class="code-string">"What is your name?"</span> <span class="code-keyword">into</span> name
+<span class="code-keyword">ask</span> <span class="code-string">"How old are you?"</span> <span class="code-keyword">into</span> age
+<span class="code-keyword">show</span> <span class="code-string">"Next year you turn "</span>
+<span class="code-keyword">show</span> age + 1</code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output (typed: Ada, 30)</span>→ Next year you turn
+→ 31</pre>
+                </section>
+
+                <section id="operators">
+                    <h2>Operators</h2>
+                    <p>Symbols only where symbols earn their place. Logic is always written as words.</p>
+                    <div class="doc-table" role="region" aria-label="Arithmetic operators" tabindex="0"><table>
+                        <tr><th>Operator</th><th>Meaning</th><th>Example</th></tr>
+                        <tr><td><code>+</code></td><td>Add / join strings</td><td><code>5 + 3 → 8</code></td></tr>
+                        <tr><td><code>-</code></td><td>Subtract / negate</td><td><code>10 - 4 → 6</code></td></tr>
+                        <tr><td><code>*</code></td><td>Multiply</td><td><code>6 * 7 → 42</code></td></tr>
+                        <tr><td><code>/</code></td><td>Divide</td><td><code>20 / 4 → 5</code></td></tr>
+                    </table></div>
+                    <div class="doc-table" role="region" aria-label="Comparison operators" tabindex="0"><table>
+                        <tr><th>Operator</th><th>Meaning</th><th>Example</th></tr>
+                        <tr><td><code>==</code></td><td>Equal to</td><td><code>5 == 5</code></td></tr>
+                        <tr><td><code>!=</code></td><td>Not equal to</td><td><code>5 != 3</code></td></tr>
+                        <tr><td><code>&lt; &gt;</code></td><td>Less / greater than</td><td><code>3 &lt; 5</code></td></tr>
+                        <tr><td><code>&lt;= &gt;=</code></td><td>…or equal to</td><td><code>5 &lt;= 5</code></td></tr>
+                    </table></div>
+                    <div class="doc-table" role="region" aria-label="Logical operators" tabindex="0"><table>
+                        <tr><th>Word</th><th>Meaning</th><th>Example</th></tr>
+                        <tr><td><code>and</code></td><td>True if both sides hold</td><td><code>1 and 1</code></td></tr>
+                        <tr><td><code>or</code></td><td>True if either side holds</td><td><code>0 or 1</code></td></tr>
+                        <tr><td><code>not</code></td><td>Flips true/false</td><td><code>not 0</code></td></tr>
+                    </table></div>
+                    <h3>Precedence</h3>
+                    <p>Eaze evaluates in this order (lowest first): <code>or</code> → <code>and</code> → comparisons → <code>+</code> <code>-</code> → <code>*</code> <code>/</code> → <code>not</code> and unary <code>-</code> → calls and indexing → values in parentheses. Parentheses always win:</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-keyword">show</span> 2 + 3 * 4     <span class="code-comment"># 14</span>
+<span class="code-keyword">show</span> (2 + 3) * 4   <span class="code-comment"># 20</span></code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output</span>→ 14
+→ 20</pre>
+                </section>
+
+                <section id="conditionals">
+                    <h2>Conditionals</h2>
+                    <p><code>if</code> runs a block only when its condition holds; <code>else</code> covers everything else. Chain them for multi-way decisions.</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-keyword">ask</span> <span class="code-string">"Score?"</span> <span class="code-keyword">into</span> score
+
+<span class="code-keyword">if</span> score >= 80
+  <span class="code-keyword">show</span> <span class="code-string">"Great job!"</span>
+<span class="code-keyword">else</span>
+  <span class="code-keyword">if</span> score >= 50
+    <span class="code-keyword">show</span> <span class="code-string">"You passed."</span>
+  <span class="code-keyword">else</span>
+    <span class="code-keyword">show</span> <span class="code-string">"Keep practicing."</span>
+  <span class="code-keyword">end</span>
+<span class="code-keyword">end</span></code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output (typed: 92)</span>→ Great job!</pre>
+                </section>
+
+                <section id="loops">
+                    <h2>Loops</h2>
+                    <p>Two loops cover every beginner need. <code>repeat</code> counts iterations for you; <code>while</code> keeps going until a condition breaks.</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-comment"># A fixed number of times</span>
+<span class="code-keyword">repeat</span> 3 <span class="code-keyword">times</span>
+  <span class="code-keyword">show</span> <span class="code-string">"Hello"</span>
+<span class="code-keyword">end</span>
+
+<span class="code-comment"># Until a condition changes</span>
+<span class="code-keyword">set</span> n <span class="code-keyword">to</span> 3
+<span class="code-keyword">while</span> n &gt; 0
+  <span class="code-keyword">show</span> n
+  <span class="code-keyword">set</span> n <span class="code-keyword">to</span> n - 1
+<span class="code-keyword">end</span>
+<span class="code-keyword">show</span> <span class="code-string">"Blast off!"</span></code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output</span>→ Hello
+→ Hello
+→ Hello
+→ 3
+→ 2
+→ 1
+→ Blast off!</pre>
+                    <div class="doc-note"><strong>Watch out:</strong> a <code>while</code> loop whose condition never becomes false runs forever. Always change something inside the body — like <code>n</code> above.</div>
+                </section>
+
+                <section id="lists">
+                    <h2>Lists</h2>
+                    <p>Lists hold ordered collections. Counting starts at <code>0</code>, items can mix types, and you can rewrite any slot with <code>set … to</code>.</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-keyword">set</span> fruits <span class="code-keyword">to</span> [<span class="code-string">"Apple"</span>, <span class="code-string">"Banana"</span>, <span class="code-string">"Cherry"</span>]
+<span class="code-keyword">show</span> fruits[0]
+
+<span class="code-keyword">set</span> fruits[1] <span class="code-keyword">to</span> <span class="code-string">"Blueberry"</span>
+<span class="code-keyword">show</span> fruits
+
+<span class="code-comment"># Walk a list with a counter</span>
+<span class="code-keyword">set</span> i <span class="code-keyword">to</span> 0
+<span class="code-keyword">while</span> i &lt; 3
+  <span class="code-keyword">show</span> fruits[i]
+  <span class="code-keyword">set</span> i <span class="code-keyword">to</span> i + 1
+<span class="code-keyword">end</span></code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output</span>→ Apple
+→ [Apple, Blueberry, Cherry]
+→ Apple
+→ Blueberry
+→ Cherry</pre>
+                    <div class="doc-note"><strong>Read the output carefully:</strong> the second line is the whole updated list; the last three lines are the loop printing each fruit. Tracing output line-by-line is a core debugging skill.</div>
+                </section>
+
+                <section id="functions">
+                    <h2>Functions</h2>
+                    <p>Package logic into reusable blocks with <code>define</code>, run them with <code>call</code>, and hand values back with <code>return</code>. Functions remember the variables around them (closures) and can call themselves (recursion).</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-keyword">define</span> square(n)
+  <span class="code-keyword">return</span> n * n
+<span class="code-keyword">end</span>
+
+<span class="code-keyword">ask</span> <span class="code-string">"Number to square?"</span> <span class="code-keyword">into</span> n
+<span class="code-keyword">set</span> result <span class="code-keyword">to</span> <span class="code-keyword">call</span> square(n)
+<span class="code-keyword">show</span> result</code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output (typed: 7)</span>→ 49</pre>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-comment"># Recursion: a function that calls itself</span>
+<span class="code-keyword">define</span> factorial(n)
+  <span class="code-keyword">if</span> n &lt;= 1
+    <span class="code-keyword">return</span> 1
+  <span class="code-keyword">else</span>
+    <span class="code-keyword">return</span> n * <span class="code-keyword">call</span> factorial(n - 1)
+  <span class="code-keyword">end</span>
+<span class="code-keyword">end</span>
+
+<span class="code-keyword">show</span> <span class="code-keyword">call</span> factorial(5)</code></pre></div>
+                    <pre class="doc-output"><span class="out-label">Output</span>→ 120</pre>
+                    <div class="doc-note"><strong>Arity matters:</strong> calling a function with the wrong number of arguments is a runtime error — <code>define add(a, b)</code> must be called as <code>call add(5, 3)</code>. If a function ends without <code>return</code>, it quietly hands back nothing.</div>
+                </section>
+
+                <section id="cli">
+                    <h2>CLI &amp; REPL</h2>
+                    <p>The command line ships with the engine. Open an interactive session with <code>npm start</code> (or <code>node cli/index.js</code>), or run a file directly:</p>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-comment"># Interactive mode</span>
+npm start
+
+<span class="code-comment"># Run a saved program</span>
+node cli/index.js examples/fibonacci.eaze</code></pre></div>
+                    <p>The REPL detects unfinished blocks and keeps prompting until you close them with <code>end</code>. These commands work at any prompt:</p>
+                    <div class="doc-table" role="region" aria-label="REPL commands" tabindex="0"><table>
+                        <tr><th>Command</th><th>Does</th></tr>
+                        <tr><td><code>help</code></td><td>Command list, language recap, operator reference</td></tr>
+                        <tr><td><code>vars</code></td><td>Inspect every variable and function currently defined</td></tr>
+                        <tr><td><code>clear</code></td><td>Clear the screen and redraw the banner</td></tr>
+                        <tr><td><code>exit</code></td><td>Leave the REPL</td></tr>
+                        <tr><td><code>Eaze</code></td><td>A hidden message about the language. Try it.</td></tr>
+                    </table></div>
+                </section>
+
+                <section id="playground">
+                    <h2>Playground</h2>
+                    <p>The desktop Playground (Windows installer or portable build) wraps the same engine in a visual workspace:</p>
+                    <ul>
+                        <li><strong>Editor + console</strong> — write on the left, see output instantly on the right. <code>F5</code> runs, <code>Ctrl+Shift+F</code> tidies indentation, <code>Ctrl+S</code> saves.</li>
+                        <li><strong>Blocks bar</strong> — one-click snippets for every keyword, so beginners never face a blank page.</li>
+                        <li><strong>Files sidebar</strong> — open folders of <code>.eaze</code> files, create, rename, and organize programs; the desktop build works with real files on disk.</li>
+                        <li><strong>Themes &amp; fullscreen</strong> — light and dark boards that match the site, plus <code>F11</code> focus mode for classrooms.</li>
+                        <li><strong>Templates &amp; help</strong> — fourteen starter programs (greeter, countdown, guessing game, password lock…) and a built-in reference, no internet required.</li>
+                    </ul>
+                    <p>Everything runs locally — your programs never leave your machine except when you explicitly ask the AI assistant for help.</p>
+                </section>
+
+                <section id="ai-assistant">
+                    <h2>AI assistant</h2>
+                    <p>Three helpers live in the Playground's AI panel, there to teach rather than to do the work for you:</p>
+                    <ul>
+                        <li><strong>The Explainer</strong> — reads your code <em>and</em> its structure, then describes the logic in plain English.</li>
+                        <li><strong>The Debugger</strong> — when an error strikes, explains <em>why</em> it happened and suggests a surgical fix.</li>
+                        <li><strong>The Transpiler</strong> — converts Eaze into clean, idiomatic JavaScript, bridging the path to professional languages.</li>
+                    </ul>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-comment"># Eaze in…</span>
+<span class="code-keyword">repeat</span> 3 <span class="code-keyword">times</span>
+  <span class="code-keyword">show</span> <span class="code-string">"Hello"</span>
+<span class="code-keyword">end</span></code></pre></div>
+                    <div class="code-window"><pre class="code-body"><code><span class="code-comment">// …and what the Transpiler makes of it</span>
+for (let i = 0; i &lt; 3; i++) {
+  console.log("Hello");
+}</code></pre></div>
+                </section>
+
+                <section id="examples">
+                    <h2>Example programs</h2>
+                    <p>Complete, runnable programs from the <code>examples/</code> folder. Copy any of them into the Playground or a <code>.eaze</code> file.</p>
+                    <h3>Fibonacci sequence</h3>
+                    <div class="code-window">
+                        <figcaption class="code-head">
+                            <span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="code-title" aria-hidden="true">fibonacci.eaze</span>
+                            <a class="code-link" href="download.html">Run it</a>
+                        </figcaption>
+                        <pre class="code-body"><code><span class="code-comment"># Prints the first N Fibonacci numbers</span>
+<span class="code-keyword">ask</span> <span class="code-string">"How many Fibonacci numbers?"</span> <span class="code-keyword">into</span> n
+<span class="code-keyword">set</span> a <span class="code-keyword">to</span> 0
+<span class="code-keyword">set</span> b <span class="code-keyword">to</span> 1
+
+<span class="code-keyword">show</span> <span class="code-string">"Fibonacci Sequence:"</span>
+
+<span class="code-keyword">repeat</span> n <span class="code-keyword">times</span>
+  <span class="code-keyword">show</span> a
+  <span class="code-keyword">set</span> temp <span class="code-keyword">to</span> a + b
+  <span class="code-keyword">set</span> a <span class="code-keyword">to</span> b
+  <span class="code-keyword">set</span> b <span class="code-keyword">to</span> temp
+<span class="code-keyword">end</span>
+
+<span class="code-keyword">show</span> <span class="code-string">"Done!"</span></code></pre>
+                    </div>
+                    <pre class="doc-output"><span class="out-label">Output (typed: 5)</span>→ Fibonacci Sequence:
+→ 0
+→ 1
+→ 1
+→ 2
+→ 3
+→ Done!</pre>
+                    <h3>Guessing game</h3>
+                    <div class="code-window">
+                        <figcaption class="code-head">
+                            <span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="code-title" aria-hidden="true">guessing_game.eaze</span>
+                            <a class="code-link" href="download.html">Run it</a>
+                        </figcaption>
+                        <pre class="code-body"><code><span class="code-keyword">show</span> <span class="code-string">"I am thinking of a number from 1 to 10."</span>
+<span class="code-keyword">set</span> secret <span class="code-keyword">to</span> 7
+<span class="code-keyword">set</span> guess <span class="code-keyword">to</span> -1
+
+<span class="code-keyword">while</span> guess != secret
+  <span class="code-keyword">ask</span> <span class="code-string">"Your guess?"</span> <span class="code-keyword">into</span> guess
+
+  <span class="code-keyword">if</span> guess &lt; secret
+    <span class="code-keyword">show</span> <span class="code-string">"Too small!"</span>
+  <span class="code-keyword">else</span>
+    <span class="code-keyword">if</span> guess &gt; secret
+      <span class="code-keyword">show</span> <span class="code-string">"Too big!"</span>
+    <span class="code-keyword">else</span>
+      <span class="code-keyword">show</span> <span class="code-string">"Correct!"</span>
+    <span class="code-keyword">end</span>
+  <span class="code-keyword">end</span>
+<span class="code-keyword">end</span></code></pre>
+                    </div>
+                    <h3>Mini calculator</h3>
+                    <div class="code-window">
+                        <figcaption class="code-head">
+                            <span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="code-title" aria-hidden="true">calculator.eaze</span>
+                            <a class="code-link" href="download.html">Run it</a>
+                        </figcaption>
+                        <pre class="code-body"><code><span class="code-keyword">ask</span> <span class="code-string">"Number A?"</span> <span class="code-keyword">into</span> a
+<span class="code-keyword">ask</span> <span class="code-string">"Number B?"</span> <span class="code-keyword">into</span> b
+
+<span class="code-keyword">show</span> <span class="code-string">"A + B ="</span>
+<span class="code-keyword">show</span> a + b
+
+<span class="code-keyword">show</span> <span class="code-string">"A - B ="</span>
+<span class="code-keyword">show</span> a - b
+
+<span class="code-keyword">if</span> b == 0
+  <span class="code-keyword">show</span> <span class="code-string">"A / B = (cannot divide by 0)"</span>
+<span class="code-keyword">else</span>
+  <span class="code-keyword">show</span> <span class="code-string">"A / B ="</span>
+  <span class="code-keyword">show</span> a / b
+<span class="code-keyword">end</span></code></pre>
+                    </div>
+                </section>
+
+                <section id="errors">
+                    <h2>Troubleshooting</h2>
+                    <p>Eaze errors always name the line and column. The five messages below cover nearly every beginner stuck-point:</p>
+                    <div class="doc-table" role="region" aria-label="Common errors" tabindex="0"><table>
+                        <tr><th>You see</th><th>It means</th><th>Fix</th></tr>
+                        <tr><td><code>I don't know what 'x' is</code></td><td>Using a variable before creating it</td><td>Add <code>set x to …</code> first</td></tr>
+                        <tr><td><code>Expected end</code></td><td>A block was never closed</td><td>Match every <code>if</code> / <code>repeat</code> / <code>while</code> / <code>define</code> with <code>end</code></td></tr>
+                        <tr><td><code>expects 2 arguments but got 1</code></td><td>Wrong argument count in a <code>call</code></td><td>Count the parameters in <code>define</code></td></tr>
+                        <tr><td><code>Unexpected character</code></td><td>A symbol Eaze doesn't use (e.g. <code>;</code> <code>{</code> <code>$</code>)</td><td>Delete it — one statement per line needs no punctuation</td></tr>
+                        <tr><td><code>Division by zero</code></td><td>Exactly what it says</td><td>Guard with <code>if b == 0</code> first</td></tr>
+                    </table></div>
+                    <p>Still stuck? Paste the error into the Playground's <strong>Debugger</strong> — explaining <em>why</em> is literally its job.</p>
+                </section>
+
+                <section id="roadmap">
+                    <h2>Roadmap</h2>
+                    <p><strong>Shipped in v1.0:</strong> the Windows Playground (installer + portable), the CLI/REPL, fourteen starter templates, and the AI learning assistant.</p>
+                    <p><strong>Next, the language:</strong> richer lists, a Math + String standard library, and local file I/O for bigger programs. <strong>Next, the reach:</strong> native macOS and Linux builds.</p>
+                    <p>Deliberately <em>not</em> on the list: classes, modules, and type annotations. Eaze stays small on purpose — it is a first step into programming, and a confident one.</p>
+                </section>
+
+                <div class="docs-cta">
+                    <h2 style="font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 1rem;">Read the manual.<br>Then write the code.</h2>
+                    <p style="margin-bottom: 2rem;">Grab the Playground and run every example on this page.</p>
+                    <a href="download.html" class="btn-primary" style="display: inline-block; text-decoration: none;">Download Eaze</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <a href="index.html" class="footer-logo">EAZE</a>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Product</h4>
+                    <a href="download.html">Playground</a>
+                    <a href="docs.html#cli">CLI &amp; REPL</a>
+                    <a href="docs.html#ai-assistant">AI Assistant</a>
+                    <a href="download.html">Download</a>
+                </div>
+                <div class="link-group">
+                    <h4>Learn</h4>
+                    <a href="docs.html">Documentation</a>
+                    <a href="docs.html#tour">Language tour</a>
+                    <a href="docs.html#examples">Examples</a>
+                    <a href="behind.html">Behind Eaze</a>
+                </div>
+                <div class="link-group">
+                    <h4>Project</h4>
+                    <a href="https://github.com/MR-STARK87/Eaze" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/MR-STARK87/Eaze/releases/tag/v1.0.0" target="_blank" rel="noopener">Latest release</a>
+                    <a href="https://www.linkedin.com/in/syed-zaid-ali-5a5803330/" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 4rem; font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: space-between;">
+            <span>&copy; 2026 Eaze Language Foundation.</span>
+            <span style="opacity: 0.5;">Designed for Humans.</span>
+        </div>
+    </footer>
+
+    <div class="transition-overlay"></div>
+
+    <script>
+        // Theme: persisted dark mode (CSS handles .dark-theme vars)
+        const themeBtn = document.querySelector('.theme-btn');
+        const storedTheme = localStorage.getItem('eaze-theme');
+        if (storedTheme === 'dark') document.body.classList.add('dark-theme');
+        themeBtn.addEventListener('click', () => {
+            const dark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('eaze-theme', dark ? 'dark' : 'light');
+        });
+
+        // Mobile menu
+        const menuBtn = document.querySelector('.menu-btn');
+        const primaryNav = document.getElementById('primary-nav');
+        menuBtn.addEventListener('click', () => {
+            const open = primaryNav.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        primaryNav.addEventListener('click', (e) => {
+            if (e.target.closest('a')) {
+                primaryNav.classList.remove('open');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Custom cursor: fine pointers only, off for reduced motion
+        const finePointer = window.matchMedia('(pointer: fine)').matches;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
+
+        if (finePointer && !reducedMotion) {
+            window.addEventListener('mousemove', (e) => {
+                document.body.classList.add('cursor-active');
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                dot.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
+                outline.style.transform = `translate3d(${posX - 16}px, ${posY - 16}px, 0)`;
+            });
+        } else {
+            dot.style.display = 'none';
+            outline.style.display = 'none';
+        }
+
+        // Transition logic
+        const overlay = document.querySelector('.transition-overlay');
+
+        window.addEventListener('load', () => {
+            overlay.classList.add('exit');
+        });
+
+        document.querySelectorAll('a').forEach(link => {
+            if (link.classList.contains('transition-link')) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const href = link.href;
+                    overlay.classList.remove('exit');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 600);
+                });
+            }
+        });
+
+        // Scroll-spy: highlight the TOC entry for the section in view
+        const tocLinks = Array.from(document.querySelectorAll('.docs-toc a'));
+        const sections = tocLinks
+            .map(a => document.querySelector(a.getAttribute('href')))
+            .filter(Boolean);
+
+        if (!reducedMotion && 'IntersectionObserver' in window) {
+            const spy = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+                    }
+                });
+            }, { rootMargin: '-30% 0px -60% 0px' });
+            sections.forEach(s => spy.observe(s));
+        }
+
+        // Simple reveal animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.docs-content section, .docs-cta').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

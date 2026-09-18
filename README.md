@@ -9,6 +9,7 @@ Live at **https://mr-stark87.github.io/Eaze-Landing-Site/** (GitHub Pages, `main
 | File | Route | Content |
 | --- | --- | --- |
 | `index.html` | `/` | Hero, use cases, philosophy ("Less friction. More understanding."), features, live Eaze snippet, roadmap, CTA |
+| `docs.html` | `/docs.html` | Full language manual: tour, operators, CLI, Playground, AI assistant, examples, troubleshooting, roadmap |
 | `behind.html` | `/behind.html` | Creator narrative: the question, the vision ("Programming for humans first"), the philosophy ("Learning before complexity") |
 | `download.html` | `/download.html` | Windows installer + portable builds (v1.0.0, via GitHub releases), system requirements, run-from-source |
 | `404.html` | 404 | Fallback route for Pages |
