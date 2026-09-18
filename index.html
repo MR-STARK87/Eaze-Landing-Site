@@ -121,20 +121,25 @@
             <div style="margin-bottom: 3rem; text-align: center;">
                 <h3 style="font-size: 2rem; font-weight: 800; letter-spacing: -0.04em;">A snippet of flow</h3>
             </div>
-            <div class="code-window" role="img" aria-label="Example Eaze program: ask for a name, greet the user, and respond based on their quest">
-                <div><span class="code-comment"># Say hello in Eaze</span></div>
-                <div><span class="code-keyword">ask</span> <span class="code-string">"What is your name?"</span> <span class="code-keyword">into</span> name</div>
-                <br>
-                <div><span class="code-keyword">show</span> <span class="code-string">"Welcome, "</span> + name</div>
-                <br>
-                <div><span class="code-keyword">ask</span> <span class="code-string">"What is your quest?"</span> <span class="code-keyword">into</span> quest</div>
-                <br>
-                <div><span class="code-keyword">if</span> quest == <span class="code-string">"code"</span></div>
-                <div style="padding-left: 2rem;"><span class="code-keyword">show</span> <span class="code-string">"Your journey begins."</span></div>
-                <div><span class="code-keyword">else</span></div>
-                <div style="padding-left: 2rem;"><span class="code-keyword">show</span> <span class="code-string">"Every quest starts with a first line."</span></div>
-                <div><span class="code-keyword">end</span></div>
-            </div>
+            <figure class="code-window" aria-label="Example Eaze program: ask for a name, greet the user, and respond based on their quest">
+                <figcaption class="code-head">
+                    <span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <span class="code-title" aria-hidden="true">hello.eaze</span>
+                    <a class="code-link" href="download.html">Open in Playground</a>
+                </figcaption>
+                <pre class="code-body"><code><span class="code-comment"># Say hello in Eaze</span>
+<span class="code-keyword">ask</span> <span class="code-string">"What is your name?"</span> <span class="code-keyword">into</span> name
+
+<span class="code-keyword">show</span> <span class="code-string">"Welcome, "</span> + name
+
+<span class="code-keyword">ask</span> <span class="code-string">"What is your quest?"</span> <span class="code-keyword">into</span> quest
+
+<span class="code-keyword">if</span> quest == <span class="code-string">"code"</span>
+  <span class="code-keyword">show</span> <span class="code-string">"Your journey begins."</span>
+<span class="code-keyword">else</span>
+  <span class="code-keyword">show</span> <span class="code-string">"Every quest starts with a first line."</span>
+<span class="code-keyword">end</span></code></pre>
+            </figure>
         </section>
 
         <!-- Roadmap -->
@@ -246,16 +251,6 @@
                 outline.style.background = 'transparent';
             });
         });
-
-        // Parallax Effect for Code Window (skipped for reduced motion)
-        const codeWindow = document.querySelector('.code-window');
-        if (codeWindow && !reducedMotion) {
-            window.addEventListener('mousemove', (e) => {
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-                codeWindow.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-            });
-        }
 
         // Transition logic
         const overlay = document.querySelector('.transition-overlay');
