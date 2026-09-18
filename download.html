@@ -3,66 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Eaze | The Engine of Flow</title>
+    <title>Download Eaze | Eaze Playground for Windows</title>
+    <meta name="description" content="Download Eaze Playground v1.0.0 for Windows — guided installer or portable build. Free, no sign-up.">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Download Eaze Playground v1.0.0">
+    <meta property="og:description" content="Guided installer or portable build for Windows x64.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="minimal-page">
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-outline" aria-hidden="true"></div>
 
-    <nav>
+    <nav aria-label="Primary">
         <div class="nav-container">
             <a href="index.html" class="logo">EAZE</a>
-            <div class="nav-links">
+            <div class="nav-links" id="primary-nav">
                 <a href="index.html#features">Features</a>
                 <a href="index.html#philosophy">Philosophy</a>
-                <a href="../eaze-docs/index.html">Docs</a>
+                <a href="behind.html">Behind Eaze</a>
+                <a href="https://github.com/MR-STARK87/Eaze" target="_blank" rel="noopener">Docs</a>
                 <a href="index.html" class="btn-primary">Back Home</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9673;</button>
+                <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <main>
+    <main id="main">
         <section class="hero" style="text-align: center; padding-top: 12rem;">
             <h1 style="font-size: 5rem; margin-bottom: 1.5rem;">Download Eaze</h1>
             <p class="hero-description" style="margin: 0 auto 4rem;">Install Eaze and begin learning programming through clarity, exploration, and understanding.</p>
             
             <div class="download-container" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
                 <div class="download-card" style="max-width: 400px; padding: 4rem;">
-                    <div style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 2rem;">Recommended</div>
-                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Windows</h2>
-                    <p style="font-size: 1rem; margin-bottom: 3rem;">Includes the Eaze Interpreter, CLI environment, execution visualizer, and learning-focused development tools.</p>
-                    <a href="EazeSetup.exe" class="download-btn" download style="width: 100%; justify-content: center;">
-                        Download .exe
+                    <div class="eyebrow" style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 2rem;">Recommended</div>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Windows Installer</h2>
+                    <p style="font-size: 1rem; margin-bottom: 3rem;">Guided setup with Start Menu + Desktop shortcuts and an uninstaller. Includes the Playground, CLI, visualizer, and AI assistant.</p>
+                    <a href="https://github.com/MR-STARK87/Eaze/releases/download/v1.0.0/Eaze-Playground-Setup-1.0.0.exe" class="download-btn" style="width: 100%; justify-content: center;">
+                        Download Setup
                     </a>
-                    <div class="download-info" style="margin-top: 2rem;">v1.0.0 • x64 • 95.9 MB</div>
+                    <div class="download-info" style="margin-top: 2rem;">v1.0.0 &bull; x64 &bull; &asymp;77 MB</div>
                 </div>
 
-                <div class="download-card" style="max-width: 400px; padding: 4rem; opacity: 0.6; cursor: not-allowed;">
-                    <div style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 2rem;">Coming Soon</div>
-                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">macOS</h2>
-                    <p style="font-size: 1rem; margin-bottom: 3rem;">Native macOS support is currently under active development and will be available in a future release.</p>
-                    <span class="download-btn" style="background: var(--border); color: var(--text-muted); pointer-events: none; width: 100%; justify-content: center;">
-                        Notify Me
-                    </span>
-                    <div class="download-info" style="margin-top: 2rem;">v1.1.0 • Universal • TBD</div>
+                <div class="download-card" style="max-width: 400px; padding: 4rem;">
+                    <div class="eyebrow" style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 2rem;">No install</div>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Windows Portable</h2>
+                    <p style="font-size: 1rem; margin-bottom: 3rem;">A single .exe that runs anywhere &mdash; classrooms, USB sticks, locked-down lab machines. Nothing to install.</p>
+                    <a href="https://github.com/MR-STARK87/Eaze/releases/download/v1.0.0/Eaze-Playground-Portable-1.0.0.exe" class="download-btn" style="width: 100%; justify-content: center;">
+                        Download Portable
+                    </a>
+                    <div class="download-info" style="margin-top: 2rem;">v1.0.0 &bull; x64 &bull; &asymp;77 MB</div>
                 </div>
             </div>
+            <p style="margin-top: 3rem; font-size: 0.95rem; color: var(--text-muted);">macOS and Linux builds are on the roadmap. Prefer the terminal? See &ldquo;Run from source&rdquo; below.</p>
         </section>
 
         <section class="features-section" style="border-top: 1px solid var(--border); margin-top: 8rem;">
             <div class="features-grid" style="grid-template-columns: repeat(3, 1fr);">
                 <div class="feature-item">
                     <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">System Requirements</h4>
-                    <p style="font-size: 0.9rem;">Modern operating system, Node.js environment, and minimal system resources required to run the Eaze ecosystem.</p>
+                    <p style="font-size: 0.9rem;">Windows 10 or later (x64), &asymp;300 MB free disk space. No Node.js needed for the desktop builds.</p>
                 </div>
                 <div class="feature-item">
-                    <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Checksums</h4>
-                    <p style="font-size: 0.9rem;">SHA-256: <code>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code></p>
+                    <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Verify</h4>
+                    <p style="font-size: 0.9rem;">Sizes, checksums, and signatures live on the <a href="https://github.com/MR-STARK87/Eaze/releases/tag/v1.0.0" target="_blank" rel="noopener">GitHub release page</a> &mdash; always download from there.</p>
                 </div>
                 <div class="feature-item">
-                    <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Package Manager</h4>
-                    <p style="font-size: 0.9rem;">Install via terminal: <code>npm install -g eaze-lang</code> (Requires Node.js)</p>
+                    <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Run from source</h4>
+                    <p style="font-size: 0.9rem;">Requires Node.js 18+: <code>git clone https://github.com/MR-STARK87/Eaze.git</code>, then <code>npm install</code> and <code>npm start</code>.</p>
                 </div>
             </div>
         </section>
@@ -78,18 +93,48 @@
     <div class="transition-overlay"></div>
 
     <script>
-        // Custom Cursor
+        // Theme: persisted dark mode (CSS handles .dark-theme vars)
+        const themeBtn = document.querySelector('.theme-btn');
+        const storedTheme = localStorage.getItem('eaze-theme');
+        if (storedTheme === 'dark') document.body.classList.add('dark-theme');
+        themeBtn.addEventListener('click', () => {
+            const dark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('eaze-theme', dark ? 'dark' : 'light');
+        });
+
+        // Mobile menu
+        const menuBtn = document.querySelector('.menu-btn');
+        const primaryNav = document.getElementById('primary-nav');
+        menuBtn.addEventListener('click', () => {
+            const open = primaryNav.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        primaryNav.addEventListener('click', (e) => {
+            if (e.target.closest('a')) {
+                primaryNav.classList.remove('open');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Custom cursor: fine pointers only, off for reduced motion
+        const finePointer = window.matchMedia('(pointer: fine)').matches;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const dot = document.querySelector('.cursor-dot');
         const outline = document.querySelector('.cursor-outline');
 
-        window.addEventListener('mousemove', (e) => {
-            document.body.classList.add('cursor-active');
-            const posX = e.clientX;
-            const posY = e.clientY;
+        if (finePointer && !reducedMotion) {
+            window.addEventListener('mousemove', (e) => {
+                document.body.classList.add('cursor-active');
+                const posX = e.clientX;
+                const posY = e.clientY;
 
-            dot.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
-            outline.style.transform = `translate3d(${posX - 16}px, ${posY - 16}px, 0)`;
-        });
+                dot.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
+                outline.style.transform = `translate3d(${posX - 16}px, ${posY - 16}px, 0)`;
+            });
+        } else {
+            dot.style.display = 'none';
+            outline.style.display = 'none';
+        }
 
         // Hover effects for cursor
         document.querySelectorAll('a, button, .download-card').forEach(el => {
@@ -110,7 +155,7 @@
         });
 
         document.querySelectorAll('a').forEach(link => {
-            if (!link.hasAttribute('download') && (link.href.includes('index.html') || link.href.includes('eaze-docs') || link.classList.contains('transition-link'))) {
+            if (link.classList.contains('transition-link')) {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const href = link.href;

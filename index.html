@@ -3,28 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eaze | Minimal Programming Language</title>
+    <title>Eaze | Think in code. Not in syntax.</title>
+    <meta name="description" content="Eaze is a beginner-friendly programming language and learning environment. English-like syntax, instant feedback, and a desktop Playground for Windows.">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Eaze | Think in code. Not in syntax.">
+    <meta property="og:description" content="A human-centric programming language designed for learning. Download the Playground for Windows.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-outline" aria-hidden="true"></div>
 
-    <nav>
+    <nav aria-label="Primary">
         <div class="nav-container">
-            <a href="#" class="logo">EAZE</a>
-            <div class="nav-links">
+            <a href="index.html" class="logo">EAZE</a>
+            <div class="nav-links" id="primary-nav">
                 <a href="#features">Features</a>
                 <a href="#philosophy">Philosophy</a>
                 <a href="behind.html">Behind Eaze</a>
                 <a href="download.html">Download</a>
-                <a href="../eaze-docs/index.html">Docs</a>
+                <a href="https://github.com/MR-STARK87/Eaze" target="_blank" rel="noopener">Docs</a>
                 <a href="download.html" class="btn-primary">Get Started</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9673;</button>
+                <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <main>
+    <main id="main">
         <!-- Hero -->
         <section class="hero">
             <h1>
@@ -36,7 +49,7 @@
             </p>
             <div class="hero-actions">
                 <a href="download.html" class="btn-primary">Download Installer</a>
-                <a href="../eaze-docs/index.html" style="text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.9rem; padding: 0.7rem 0; border-bottom: 2px solid var(--text-main);">View Documentation</a>
+                <a href="https://github.com/MR-STARK87/Eaze" target="_blank" rel="noopener" style="text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.9rem; padding: 0.7rem 0; border-bottom: 2px solid var(--text-main);">View Documentation</a>
             </div>
         </section>
 
@@ -108,12 +121,18 @@
             <div style="margin-bottom: 3rem; text-align: center;">
                 <h3 style="font-size: 2rem; font-weight: 800; letter-spacing: -0.04em;">A snippet of flow</h3>
             </div>
-            <div class="code-window">
-                <div><span class="code-keyword">set</span> name <span class="code-keyword">to</span> <span class="code-string">"Explorer"</span></div>
+            <div class="code-window" role="img" aria-label="Example Eaze program: ask for a name, greet the user, and respond based on their quest">
+                <div><span class="code-comment"># Say hello in Eaze</span></div>
+                <div><span class="code-keyword">ask</span> <span class="code-string">"What is your name?"</span> <span class="code-keyword">into</span> name</div>
+                <br>
+                <div><span class="code-keyword">show</span> <span class="code-string">"Welcome, "</span> + name</div>
+                <br>
                 <div><span class="code-keyword">ask</span> <span class="code-string">"What is your quest?"</span> <span class="code-keyword">into</span> quest</div>
                 <br>
-                <div><span class="code-keyword">if</span> quest <span class="code-keyword">is</span> <span class="code-string">"code"</span> <span class="code-keyword">then</span></div>
-                <div style="padding-left: 2rem;"><span class="code-keyword">show</span> <span class="code-string">"Welcome to Eaze, "</span> + name</div>
+                <div><span class="code-keyword">if</span> quest == <span class="code-string">"code"</span></div>
+                <div style="padding-left: 2rem;"><span class="code-keyword">show</span> <span class="code-string">"Your journey begins."</span></div>
+                <div><span class="code-keyword">else</span></div>
+                <div style="padding-left: 2rem;"><span class="code-keyword">show</span> <span class="code-string">"Every quest starts with a first line."</span></div>
                 <div><span class="code-keyword">end</span></div>
             </div>
         </section>
@@ -124,16 +143,16 @@
                 <h3 style="font-size: 2.5rem; font-weight: 800; letter-spacing: -0.05em; margin-bottom: 3rem;">The Road Ahead</h3>
                 <div style="display: flex; gap: 4rem; flex-wrap: wrap;">
                     <div style="flex: 1; min-width: 250px;">
-                        <h4 style="margin-bottom: 1rem; color: var(--text-muted);">v1.2: Ecosystem</h4>
-                        <p>Introducing a centralized package manager and a rich standard library for web and graphics.</p>
+                        <h4 style="margin-bottom: 1rem; color: var(--text-muted);">v1.0: Shipped</h4>
+                        <p>Eaze Playground for Windows (installer + portable), the CLI/REPL, and the AI learning assistant are out now.</p>
                     </div>
                     <div style="flex: 1; min-width: 250px;">
-                        <h4 style="margin-bottom: 1rem; color: var(--text-muted);">v1.5: Native Apps</h4>
-                        <p>Compiler support for generating native binaries on Windows, macOS, and Linux.</p>
+                        <h4 style="margin-bottom: 1rem; color: var(--text-muted);">Next: Language</h4>
+                        <p>Lists and arrays, a Math + String standard library, and local file system I/O for bigger programs.</p>
                     </div>
                     <div style="flex: 1; min-width: 250px;">
-                        <h4 style="margin-bottom: 1rem; color: var(--text-muted);">v2.0: Flow AI</h4>
-                        <p>Deep integration with LLMs to assist in writing natural, safe, and efficient Eaze code.</p>
+                        <h4 style="margin-bottom: 1rem; color: var(--text-muted);">Next: Reach</h4>
+                        <p>Native builds for macOS and Linux, plus deeper AI guidance woven into the Playground.</p>
                     </div>
                 </div>
             </div>
@@ -150,18 +169,18 @@
 
     <footer>
         <div class="footer-grid">
-            <a href="#" class="footer-logo">EAZE</a>
+            <a href="index.html" class="footer-logo">EAZE</a>
             <div class="footer-links">
                 <div class="link-group">
                     <h4>Resources</h4>
-                    <a href="../eaze-docs/index.html" class="transition-link">Manuscript</a>
-                    <a href="#">Playground</a>
-                    <a href="#">GitHub</a>
+                    <a href="https://github.com/MR-STARK87/Eaze" target="_blank" rel="noopener">Documentation</a>
+                    <a href="download.html">Playground</a>
+                    <a href="https://github.com/MR-STARK87/Eaze" target="_blank" rel="noopener">GitHub</a>
                 </div>
                 <div class="link-group">
                     <h4>Connect</h4>
-                    <a href="#">Discord</a>
-                    <a href="#">Twitter</a>
+                    <a href="https://github.com/MR-STARK87" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/syed-zaid-ali-5a5803330/" target="_blank" rel="noopener">LinkedIn</a>
                 </div>
             </div>
         </div>
@@ -174,18 +193,48 @@
     <div class="transition-overlay"></div>
 
     <script>
-        // Custom Cursor
+        // Theme: persisted dark mode (CSS handles .dark-theme vars)
+        const themeBtn = document.querySelector('.theme-btn');
+        const storedTheme = localStorage.getItem('eaze-theme');
+        if (storedTheme === 'dark') document.body.classList.add('dark-theme');
+        themeBtn.addEventListener('click', () => {
+            const dark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('eaze-theme', dark ? 'dark' : 'light');
+        });
+
+        // Mobile menu
+        const menuBtn = document.querySelector('.menu-btn');
+        const primaryNav = document.getElementById('primary-nav');
+        menuBtn.addEventListener('click', () => {
+            const open = primaryNav.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        primaryNav.addEventListener('click', (e) => {
+            if (e.target.closest('a')) {
+                primaryNav.classList.remove('open');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Custom cursor: fine pointers only, off for reduced motion
+        const finePointer = window.matchMedia('(pointer: fine)').matches;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const dot = document.querySelector('.cursor-dot');
         const outline = document.querySelector('.cursor-outline');
 
-        window.addEventListener('mousemove', (e) => {
-            document.body.classList.add('cursor-active');
-            const posX = e.clientX;
-            const posY = e.clientY;
+        if (finePointer && !reducedMotion) {
+            window.addEventListener('mousemove', (e) => {
+                document.body.classList.add('cursor-active');
+                const posX = e.clientX;
+                const posY = e.clientY;
 
-            dot.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
-            outline.style.transform = `translate3d(${posX - 16}px, ${posY - 16}px, 0)`;
-        });
+                dot.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
+                outline.style.transform = `translate3d(${posX - 16}px, ${posY - 16}px, 0)`;
+            });
+        } else {
+            dot.style.display = 'none';
+            outline.style.display = 'none';
+        }
 
         // Hover effects for cursor
         document.querySelectorAll('a, button, .feature-item').forEach(el => {
@@ -198,9 +247,9 @@
             });
         });
 
-        // Parallax Effect for Code Window
+        // Parallax Effect for Code Window (skipped for reduced motion)
         const codeWindow = document.querySelector('.code-window');
-        if (codeWindow) {
+        if (codeWindow && !reducedMotion) {
             window.addEventListener('mousemove', (e) => {
                 const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
                 const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
@@ -216,7 +265,7 @@
         });
 
         document.querySelectorAll('a').forEach(link => {
-            if (link.href.includes('eaze-docs') || link.classList.contains('transition-link')) {
+            if (link.classList.contains('transition-link')) {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const href = link.href;

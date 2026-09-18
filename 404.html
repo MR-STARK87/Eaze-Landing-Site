@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost in flow | Eaze</title>
+    <meta name="description" content="This page wandered off. Head back to the Eaze landing site.">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav aria-label="Primary">
+        <div class="nav-container">
+            <a href="index.html" class="logo">EAZE</a>
+            <div class="nav-actions">
+                <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9673;</button>
+            </div>
+        </div>
+    </nav>
+    <main id="main">
+        <section class="hero" style="text-align: center;">
+            <h1>Off the<br>page.</h1>
+            <p class="hero-description" style="margin-inline: auto;">This route doesn't exist yet — even the simplest languages need an <code>else</code> branch.</p>
+            <div class="hero-actions" style="justify-content: center;">
+                <a href="index.html" class="btn-primary">Back Home</a>
+            </div>
+        </section>
+    </main>
+    <script>
+        const storedTheme = localStorage.getItem('eaze-theme');
+        if (storedTheme === 'dark') document.body.classList.add('dark-theme');
+        document.querySelector('.theme-btn').addEventListener('click', () => {
+            const dark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('eaze-theme', dark ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>

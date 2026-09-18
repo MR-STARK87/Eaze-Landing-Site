@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Behind Eaze | Editorial Narrative</title>
+    <title>Behind Eaze | Vision, Philosophy &amp; Creator</title>
+    <meta name="description" content="Why Eaze exists: programming for humans first. The question, the philosophy, and the creator behind the language.">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Behind Eaze | Programming for humans first">
+    <meta property="og:description" content="Learning before complexity. The story and philosophy behind Eaze.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <style>
         /* Behind Eaze: Editorial Masterclass Styles */
@@ -285,26 +291,33 @@
         }
     </style>
 </head>
-<body class="light-theme">
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-outline" aria-hidden="true"></div>
     <div class="vertical-axis">
         <div class="axis-progress"></div>
     </div>
     <div class="bg-text">FLOW</div>
 
-    <nav>
+    <nav aria-label="Primary">
         <div class="nav-container">
             <a href="index.html" class="logo transition-link">EAZE</a>
-            <div class="nav-links">
+            <div class="nav-links" id="primary-nav">
                 <a href="index.html" class="transition-link">Frontispiece</a>
-                <a href="../eaze-docs/index.html" class="transition-link">Manuscript</a>
+                <a href="https://github.com/MR-STARK87/Eaze" target="_blank" rel="noopener">Manuscript</a>
                 <a href="download.html" class="btn-primary transition-link">Get Started</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9673;</button>
+                <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <main class="flow-container">
+    <main class="flow-container" id="main">
         <!-- Hero Section -->
         <section class="flow-section" style="margin-bottom: 45rem; opacity: 1; transform: none;">
             <div class="flow-content" style="width: 100%;">
@@ -387,7 +400,7 @@
             <a href="index.html" class="logo transition-link" style="font-size: 2rem;">EAZE</a>
             <div style="display: flex; gap: 6rem;">
                 <a href="index.html" class="nav-item transition-link">Home</a>
-                <a href="../eaze-docs/index.html" class="nav-item transition-link">Docs</a>
+                <a href="https://github.com/MR-STARK87/Eaze" target="_blank" rel="noopener" class="nav-item">Docs</a>
                 <a href="download.html" class="nav-item transition-link">Get Eaze</a>
             </div>
             <p style="font-size: 0.8rem; color: var(--text-muted); font-weight: 900; letter-spacing: 0.6em; text-transform: uppercase; margin-top: 4rem; opacity: 0.4;">&copy; 2026 Eaze Language Foundation</p>
@@ -397,17 +410,47 @@
     <div class="transition-overlay"></div>
 
     <script>
-        // Custom Cursor
+        // Theme: persisted dark mode (CSS handles .dark-theme vars)
+        const themeBtn = document.querySelector('.theme-btn');
+        const storedTheme = localStorage.getItem('eaze-theme');
+        if (storedTheme === 'dark') document.body.classList.add('dark-theme');
+        themeBtn.addEventListener('click', () => {
+            const dark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('eaze-theme', dark ? 'dark' : 'light');
+        });
+
+        // Mobile menu
+        const menuBtn = document.querySelector('.menu-btn');
+        const primaryNav = document.getElementById('primary-nav');
+        menuBtn.addEventListener('click', () => {
+            const open = primaryNav.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        primaryNav.addEventListener('click', (e) => {
+            if (e.target.closest('a')) {
+                primaryNav.classList.remove('open');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Custom cursor: fine pointers only, off for reduced motion
+        const finePointer = window.matchMedia('(pointer: fine)').matches;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const dot = document.querySelector('.cursor-dot');
         const outline = document.querySelector('.cursor-outline');
 
-        window.addEventListener('mousemove', (e) => {
-            document.body.classList.add('cursor-active');
-            const posX = e.clientX;
-            const posY = e.clientY;
-            dot.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
-            outline.style.transform = `translate3d(${posX - 16}px, ${posY - 16}px, 0)`;
-        });
+        if (!finePointer || reducedMotion) {
+            dot.style.display = 'none';
+            outline.style.display = 'none';
+        } else {
+            window.addEventListener('mousemove', (e) => {
+                document.body.classList.add('cursor-active');
+                const posX = e.clientX;
+                const posY = e.clientY;
+                dot.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
+                outline.style.transform = `translate3d(${posX - 16}px, ${posY - 16}px, 0)`;
+            });
+        }
 
         document.addEventListener('mouseover', (e) => {
             const el = e.target.closest('a, button, .social-item');
@@ -429,7 +472,8 @@
             const axisProgress = document.querySelector('.axis-progress');
             const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
             axisProgress.style.height = `${scrollPercent}%`;
-            
+            if (reducedMotion) return;
+
             // Background text parallax
             const bgText = document.querySelector('.bg-text');
             bgText.style.transform = `translate(-50%, calc(-50% + ${window.scrollY * 0.2}px))`;
